@@ -1,6 +1,6 @@
 # FoodFinder — Full-Stack Assignment Project
 
-FoodFinder is a small full-stack app to search dishes and see which restaurants serve them, sorted by popularity (order count). It uses a Node.js + Express + MySQL backend and a React frontend. The goal: clean, modular architecture for quick demos/interviews.
+FoodFinder is a small full-stack app to search dishes and see which restaurants serve them, sorted by order count. It uses a Node.js + Express + MySQL backend and a React frontend. The goal: clean, modular architecture for quick demos/interviews.
 
 ## Project Structure
 ```
