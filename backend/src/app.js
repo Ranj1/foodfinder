@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import searchRoutes from "./routes/searchRoutes.js";
 import { errorHandler } from "./utils/errorHandler.js";
+import menuRoutes from "./routes/menuRoutes.js";
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 //   next();
 // });
 app.use("/search", searchRoutes);
+app.use("/menu", menuRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ error: "Route not found" });

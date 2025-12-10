@@ -15,7 +15,7 @@ async function startServer() {
     console.error("Database connection failed:", err.message);
     process.exit(1);
   }
-console.log("App object:", typeof app);
+
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });
