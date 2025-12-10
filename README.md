@@ -1,6 +1,8 @@
 # FoodFinder — Full-Stack Assignment Project
 
-FoodFinder is a small full-stack app to search dishes and see which restaurants serve them, sorted by order count. It uses a Node.js + Express + MySQL backend and a React frontend. The goal: clean, modular architecture for quick demos/interviews.
+FoodFinder is a small full-stack application that lets you search for dishes and see which restaurants serve them, ranked by how many times each dish has been ordered.
+The backend is built with Node.js, Express, and MySQL, and the frontend is a simple React app that consumes the API.
+The project is intentionally kept clean and modular, making it easy to understand and suitable for quick demos or interview evaluations.
 
 ## Project Structure
 ```
@@ -195,8 +197,8 @@ REACT_APP_BASE_URL=https://your-backend-url.up.railway.app
 ```
 
 ## Deployment
-- Backend: Railway + MySQL, public networking, env vars in dashboard
-- Frontend: Vercel; connect repo and select `frontend` folder
+- The backend (Node.js + Express + MySQL) is hosted on Railway.
+- The frontend (React)  is deployed on Vercel, chosen for its simplicity and fast global CDN.
 
 ## Author
 Ranjana — Software Developer

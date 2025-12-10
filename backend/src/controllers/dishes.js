@@ -1,5 +1,5 @@
 //console.log("controller loaded");
-import { getTopRestaurantsWithDish } from "../services/searchService.js";
+import { getTopRestaurantsWithDish } from "../services/dishes.js";
 
 export const searchDishes = async (req, res, next) => {
   try {

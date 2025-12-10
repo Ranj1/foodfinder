@@ -1,4 +1,4 @@
-export const validateSearch = (req, res, next) => {
+export const validateDishSearchQuery = (req, res, next) => {
   let { name, minPrice, maxPrice } = req.query;
 
   if (!name) name = "";
