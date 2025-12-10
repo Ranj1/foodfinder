@@ -13,7 +13,7 @@ foodfinder/
 
 ## Backend
 - Node.js, Express, MySQL (Railway), mysql2 (promise-based), MVC-ish structure
-- Single endpoint `/search/dishes` for list + filtered queries
+- Single endpoint `/dishes/search` for list + filtered queries
 - Indexed queries for performance
 
 ### Endpoint
@@ -53,7 +53,7 @@ src/
 `FoodFinder.jsx` = main UI/logic; `api.js` = Axios instance; services isolate API calls.
 
 ## How It Works
-- On load: fetch all dishes via `/search/dishes?name=&minPrice=0&maxPrice=9999`
+- On load: fetch all dishes via `/dishes/search?name=&minPrice=0&maxPrice=9999`
 - User searches (e.g., “Chicken Biryani”, “Masala Dosa”, “Paneer Tikka”)
 - Requires price inputs; results sorted by order count
 
@@ -63,27 +63,27 @@ Copy any of these into Postman (Import → Raw Text) or run them in a terminal.
 
 **Get all dishes**
 ```bash
-curl --location 'https://foodfinder-production.up.railway.app/search/dishes?name=&minPrice=0&maxPrice=9999'
+curl --location 'https://foodfinder-production.up.railway.app/dishes/search?name=&minPrice=0&maxPrice=9999'
 ```
 
 **Search by dish name (example: Biryani)**
 ```bash
-curl --location 'https://foodfinder-production.up.railway.app/search/dishes?name=biryani&minPrice=0&maxPrice=9999'
+curl --location 'https://foodfinder-production.up.railway.app/dishes/search?name=biryani&minPrice=0&maxPrice=9999'
 ```
 
 **Search by price range only**
 ```bash
-curl --location 'https://foodfinder-production.up.railway.app/search/dishes?name=&minPrice=150&maxPrice=300'
+curl --location 'https://foodfinder-production.up.railway.app/dishes/search?name=&minPrice=150&maxPrice=300'
 ```
 
 **Search by dish + price range**
 ```bash
-curl --location 'https://foodfinder-production.up.railway.app/search/dishes?name=chicken&minPrice=100&maxPrice=300'
+curl --location 'https://foodfinder-production.up.railway.app/dishes/search?name=chicken&minPrice=100&maxPrice=300'
 ```
 
 **Invalid request example (to test validation)**
 ```bash
-curl --location 'https://foodfinder-production.up.railway.app/search/dishes?name=biryani&minPrice=&maxPrice=200'
+curl --location 'https://foodfinder-production.up.railway.app/dishes/search?name=biryani&minPrice=&maxPrice=200'
 ```
 
 Expected error response:
