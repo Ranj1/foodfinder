@@ -2,7 +2,7 @@
 
 FoodFinder is a small full-stack application that lets you search for dishes and see which restaurants serve them, ranked by how many times each dish has been ordered.
 The backend is built with Node.js, Express, and MySQL, and the frontend is a simple React app that consumes the API.
-The project is intentionally kept clean and modular, making it easy to understand and suitable for quick demos or interview evaluations.
+
 
 ## Project Structure
 ```
