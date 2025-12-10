@@ -17,12 +17,12 @@ foodfinder/
 - Indexed queries for performance
 
 ### Endpoint
-`GET /search/dishes`
+`GET /dishes/search`
 - `name` (optional; blank returns all dishes)
 - `minPrice` (required)
 - `maxPrice` (required)
 
-Example: `/search/dishes?name=biryani&minPrice=0&maxPrice=9999`
+Example: `/dishes/search?name=biryani&minPrice=0&maxPrice=9999`
 
 ### Tables
 - `restaurants`
