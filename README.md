@@ -57,114 +57,30 @@ src/
 - User searches (e.g., “Chicken Biryani”, “Masala Dosa”, “Paneer Tikka”)
 - Requires price inputs; results sorted by order count
 
-## Postman Collection (Ready to Use)
-Use this ready-made collection to test common scenarios:
-- Get all dishes
-- Search by name
-- Search by price range
-- Search by dish + price range
-- Invalid request example (validation)
+## Quick API Testing (Postman-Friendly cURL Commands)
 
-Import steps:
-1) Open Postman → Import → Raw Text.
-2) Paste the JSON below → Import.
+Here are a few ready-to-use cURL commands so you or the reviewer can test the API quickly in Postman or a terminal.
+Just copy, paste, and run.
 
-```json
-{
-  "info": {
-    "name": "FoodFinder API - Ready to Test",
-    "_postman_id": "a213cbf2-35a8-4db7-8e6e-f7c1bc3702d3",
-    "description": "Complete ready-to-use test suite for FoodFinder Search API.",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "1) Get All Dishes (default)",
-      "request": {
-        "method": "GET",
-        "url": {
-          "raw": "https://foodfinder-production.up.railway.app/search/dishes?name=&minPrice=0&maxPrice=9999",
-          "protocol": "https",
-          "host": ["foodfinder-production", "up", "railway", "app"],
-          "path": ["search", "dishes"],
-          "query": [
-            { "key": "name", "value": "" },
-            { "key": "minPrice", "value": "0" },
-            { "key": "maxPrice", "value": "9999" }
-          ]
-        }
-      }
-    },
-    {
-      "name": "2) Search Dish by Name (e.g., Biryani)",
-      "request": {
-        "method": "GET",
-        "url": {
-          "raw": "https://foodfinder-production.up.railway.app/search/dishes?name=biryani&minPrice=0&maxPrice=9999",
-          "protocol": "https",
-          "host": ["foodfinder-production", "up", "railway", "app"],
-          "path": ["search", "dishes"],
-          "query": [
-            { "key": "name", "value": "biryani" },
-            { "key": "minPrice", "value": "0" },
-            { "key": "maxPrice", "value": "9999" }
-          ]
-        }
-      }
-    },
-    {
-      "name": "3) Search by Price Range Only",
-      "request": {
-        "method": "GET",
-        "url": {
-          "raw": "https://foodfinder-production.up.railway.app/search/dishes?name=&minPrice=150&maxPrice=300",
-          "protocol": "https",
-          "host": ["foodfinder-production", "up", "railway", "app"],
-          "path": ["search", "dishes"],
-          "query": [
-            { "key": "name", "value": "" },
-            { "key": "minPrice", "value": "150" },
-            { "key": "maxPrice", "value": "300" }
-          ]
-        }
-      }
-    },
-    {
-      "name": "4) Search Dish + Price Range",
-      "request": {
-        "method": "GET",
-        "url": {
-          "raw": "https://foodfinder-production.up.railway.app/search/dishes?name=chicken&minPrice=100&maxPrice=300",
-          "protocol": "https",
-          "host": ["foodfinder-production", "up", "railway", "app"],
-          "path": ["search", "dishes"],
-          "query": [
-            { "key": "name", "value": "chicken" },
-            { "key": "minPrice", "value": "100" },
-            { "key": "maxPrice", "value": "300" }
-          ]
-        }
-      }
-    },
-    {
-      "name": "5) Invalid Request (missing minPrice)",
-      "request": {
-        "method": "GET",
-        "url": {
-          "raw": "https://foodfinder-production.up.railway.app/search/dishes?name=biryani&minPrice=&maxPrice=200",
-          "protocol": "https",
-          "host": ["foodfinder-production", "up", "railway", "app"],
-          "path": ["search", "dishes"],
-          "query": [
-            { "key": "name", "value": "biryani" },
-            { "key": "minPrice", "value": "" },
-            { "key": "maxPrice", "value": "200" }
-          ]
-        }
-      }
-    }
-  ]
-}
+1️⃣ Get all dishes
+curl --location --request GET 'https://foodfinder-production.up.railway.app/search/dishes?name=&minPrice=0&maxPrice=9999'
+
+2️⃣ Search by dish name (example: Biryani)
+curl --location --request GET 'https://foodfinder-production.up.railway.app/search/dishes?name=biryani&minPrice=0&maxPrice=9999'
+
+3️⃣ Search by price range only
+curl --location --request GET 'https://foodfinder-production.up.railway.app/search/dishes?name=&minPrice=150&maxPrice=300'
+
+4️⃣ Search by dish + price range
+curl --location --request GET 'https://foodfinder-production.up.railway.app/search/dishes?name=chicken&minPrice=100&maxPrice=300'
+
+5️⃣ Invalid request example (to test validation)
+curl --location --request GET 'https://foodfinder-production.up.railway.app/search/dishes?name=biryani&minPrice=&maxPrice=200'
+
+
+Expected response:
+
+{ "error": "minPrice is required" }
 ```
 
 ## Local Setup
