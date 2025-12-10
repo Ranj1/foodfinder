@@ -1,15 +1,15 @@
-# 📘 FoodFinder — Full-Stack Assignment Project
+# FoodFinder — Full-Stack Assignment Project
 
 FoodFinder is a small full-stack app to search dishes and see which restaurants serve them, sorted by popularity (order count). It uses a Node.js + Express + MySQL backend and a React frontend. The goal: clean, modular architecture for quick demos/interviews.
 
-## 🏗️ Project Structure
+## Project Structure
 ```
 foodfinder/
 ├── backend/        # Node.js + Express + MySQL API
 └── frontend/       # React UI for searching dishes
 ```
 
-## ⚙️ Backend
+## Backend
 - Node.js, Express, MySQL (Railway), mysql2 (promise-based), MVC-ish structure
 - Single endpoint `/search/dishes` for list + filtered queries
 - Indexed queries for performance
@@ -29,7 +29,7 @@ Example: `/search/dishes?name=biryani&minPrice=0&maxPrice=9999`
 
 Relationships join dishes, restaurants, and historical orders to compute popularity.
 
-## 🎨 Frontend
+## Frontend
 - React (CRA), Axios, simple components, plain CSS
 - Service/config layering (`api.js`, `services/*`)
 - Features: search bar with suggestions, min/max price filters, empty-dish fetch, card list, “Top X” tag, centered empty state
@@ -50,12 +50,122 @@ src/
 ```
 `FoodFinder.jsx` = main UI/logic; `api.js` = Axios instance; services isolate API calls.
 
-## 🚀 How It Works
+## How It Works
 - On load: fetch all dishes via `/search/dishes?name=&minPrice=0&maxPrice=9999`
 - User searches (e.g., “Chicken Biryani”, “Masala Dosa”, “Paneer Tikka”)
 - Requires price inputs; results sorted by order count
 
-## 🧪 Local Setup
+## Postman Collection (Ready to Use)
+Use this ready-made collection to test common scenarios:
+- Get all dishes
+- Search by name
+- Search by price range
+- Search by dish + price range
+- Invalid request example (validation)
+
+Import steps:
+1) Open Postman → Import → Raw Text.
+2) Paste the JSON below → Import.
+
+```json
+{
+  "info": {
+    "name": "FoodFinder API - Ready to Test",
+    "_postman_id": "a213cbf2-35a8-4db7-8e6e-f7c1bc3702d3",
+    "description": "Complete ready-to-use test suite for FoodFinder Search API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1) Get All Dishes (default)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "https://foodfinder-production.up.railway.app/search/dishes?name=&minPrice=0&maxPrice=9999",
+          "protocol": "https",
+          "host": ["foodfinder-production", "up", "railway", "app"],
+          "path": ["search", "dishes"],
+          "query": [
+            { "key": "name", "value": "" },
+            { "key": "minPrice", "value": "0" },
+            { "key": "maxPrice", "value": "9999" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "2) Search Dish by Name (e.g., Biryani)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "https://foodfinder-production.up.railway.app/search/dishes?name=biryani&minPrice=0&maxPrice=9999",
+          "protocol": "https",
+          "host": ["foodfinder-production", "up", "railway", "app"],
+          "path": ["search", "dishes"],
+          "query": [
+            { "key": "name", "value": "biryani" },
+            { "key": "minPrice", "value": "0" },
+            { "key": "maxPrice", "value": "9999" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "3) Search by Price Range Only",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "https://foodfinder-production.up.railway.app/search/dishes?name=&minPrice=150&maxPrice=300",
+          "protocol": "https",
+          "host": ["foodfinder-production", "up", "railway", "app"],
+          "path": ["search", "dishes"],
+          "query": [
+            { "key": "name", "value": "" },
+            { "key": "minPrice", "value": "150" },
+            { "key": "maxPrice", "value": "300" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "4) Search Dish + Price Range",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "https://foodfinder-production.up.railway.app/search/dishes?name=chicken&minPrice=100&maxPrice=300",
+          "protocol": "https",
+          "host": ["foodfinder-production", "up", "railway", "app"],
+          "path": ["search", "dishes"],
+          "query": [
+            { "key": "name", "value": "chicken" },
+            { "key": "minPrice", "value": "100" },
+            { "key": "maxPrice", "value": "300" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "5) Invalid Request (missing minPrice)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "https://foodfinder-production.up.railway.app/search/dishes?name=biryani&minPrice=&maxPrice=200",
+          "protocol": "https",
+          "host": ["foodfinder-production", "up", "railway", "app"],
+          "path": ["search", "dishes"],
+          "query": [
+            { "key": "name", "value": "biryani" },
+            { "key": "minPrice", "value": "" },
+            { "key": "maxPrice", "value": "200" }
+          ]
+        }
+      }
+    }
+  ]
+}
+```
+
+## Local Setup
 
 ### Backend
 ```bash
@@ -84,9 +194,9 @@ Create `frontend/.env`:
 REACT_APP_BASE_URL=https://your-backend-url.up.railway.app
 ```
 
-## ☁️ Deployment
+## Deployment
 - Backend: Railway + MySQL, public networking, env vars in dashboard
 - Frontend: Vercel; connect repo and select `frontend` folder
 
-## 👩‍💻 Author
+## Author
 Ranjana — Software Developer
