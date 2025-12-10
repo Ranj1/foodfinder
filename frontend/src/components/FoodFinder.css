@@ -1,0 +1,132 @@
+/* Container */
+.ff-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Title */
+.ff-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Search Box */
+.ff-search-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.ff-search-box input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 150px;
+}
+
+.ff-search-box button {
+  padding: 8px 18px;
+  background: #0077ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.ff-search-box button:hover {
+  background: #005fd1;
+}
+
+/* Error Message */
+.ff-error {
+  color: #d9534f;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+/* Loading */
+.ff-loading {
+  text-align: center;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Empty State */
+.ff-empty-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.ff-empty-card {
+  background: white;
+  padding: 25px 40px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  font-size: 18px;
+  color: #555;
+}
+
+/* List Layout */
+.ff-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.ff-list-item {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 14px;
+  border: 1px solid #e0e0e0;
+  position: relative;
+  box-shadow: 0px 1px 4px rgba(0,0,0,0.1);
+}
+
+/* Badge for Top ranking */
+.ff-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #28a745;
+  color: white;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 12px;
+}
+
+/* Card Content */
+.ff-restaurant-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.ff-city {
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.ff-dish {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.ff-price {
+  font-weight: bold;
+  color: #333;
+}
+
+.ff-orders {
+  font-size: 14px;
+  color: #0066cc;
+  font-weight: bold;
+}

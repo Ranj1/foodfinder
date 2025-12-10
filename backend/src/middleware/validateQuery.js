@@ -1,9 +1,14 @@
 export const validateSearch = (req, res, next) => {
-  const { name, minPrice, maxPrice } = req.query;
+  let { name, minPrice, maxPrice } = req.query;
 
-  if (!name) return res.status(400).json({ error: "name is required" });
-  if (!minPrice || isNaN(minPrice)) return res.status(400).json({ error: "minPrice must be a number" });
-  if (!maxPrice || isNaN(maxPrice)) return res.status(400).json({ error: "maxPrice must be a number" });
+  if (!name) name = "";                // allow all dishes
+  if (!minPrice || isNaN(minPrice)) minPrice = 0;        // default min
+  if (!maxPrice || isNaN(maxPrice)) maxPrice = 999999;   // default max
+
+  req.query.name = name;
+  req.query.minPrice = Number(minPrice);
+  req.query.maxPrice = Number(maxPrice);
 
   next();
 };
+
