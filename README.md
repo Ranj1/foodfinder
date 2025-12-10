@@ -59,27 +59,35 @@ src/
 
 ## Quick API Testing (Postman-Friendly cURL Commands)
 
-Here are a few ready-to-use cURL commands so you or the reviewer can test the API quickly in Postman or a terminal.
-Just copy, paste, and run.
+Copy any of these into Postman (Import → Raw Text) or run them in a terminal.
 
-1️⃣ Get all dishes
-curl --location --request GET 'https://foodfinder-production.up.railway.app/search/dishes?name=&minPrice=0&maxPrice=9999'
+**Get all dishes**
+```bash
+curl --location 'https://foodfinder-production.up.railway.app/search/dishes?name=&minPrice=0&maxPrice=9999'
+```
 
-2️⃣ Search by dish name (example: Biryani)
-curl --location --request GET 'https://foodfinder-production.up.railway.app/search/dishes?name=biryani&minPrice=0&maxPrice=9999'
+**Search by dish name (example: Biryani)**
+```bash
+curl --location 'https://foodfinder-production.up.railway.app/search/dishes?name=biryani&minPrice=0&maxPrice=9999'
+```
 
-3️⃣ Search by price range only
-curl --location --request GET 'https://foodfinder-production.up.railway.app/search/dishes?name=&minPrice=150&maxPrice=300'
+**Search by price range only**
+```bash
+curl --location 'https://foodfinder-production.up.railway.app/search/dishes?name=&minPrice=150&maxPrice=300'
+```
 
-4️⃣ Search by dish + price range
-curl --location --request GET 'https://foodfinder-production.up.railway.app/search/dishes?name=chicken&minPrice=100&maxPrice=300'
+**Search by dish + price range**
+```bash
+curl --location 'https://foodfinder-production.up.railway.app/search/dishes?name=chicken&minPrice=100&maxPrice=300'
+```
 
-5️⃣ Invalid request example (to test validation)
-curl --location --request GET 'https://foodfinder-production.up.railway.app/search/dishes?name=biryani&minPrice=&maxPrice=200'
+**Invalid request example (to test validation)**
+```bash
+curl --location 'https://foodfinder-production.up.railway.app/search/dishes?name=biryani&minPrice=&maxPrice=200'
+```
 
-
-Expected response:
-
+Expected error response:
+```json
 { "error": "minPrice is required" }
 ```
 
