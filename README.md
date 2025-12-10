@@ -1,130 +1,92 @@
-FoodFinder
+# 📘 FoodFinder — Full-Stack Assignment Project
 
-FoodFinder is a small full-stack project structured with separate backend and frontend modules.
-The backend is the primary focus and provides an API for searching dishes and ranking restaurants based on order frequency.
-The frontend folder is reserved for a simple UI layer and can be expanded later.
+FoodFinder is a small full-stack app to search dishes and see which restaurants serve them, sorted by popularity (order count). It uses a Node.js + Express + MySQL backend and a React frontend. The goal: clean, modular architecture for quick demos/interviews.
 
-Project Structure
+## 🏗️ Project Structure
+```
 foodfinder/
-│
-├── backend/    → Node.js + Express API (assignment requirement)
-│
-└── frontend/   → Placeholder for UI (React or basic HTML)
+├── backend/        # Node.js + Express + MySQL API
+└── frontend/       # React UI for searching dishes
+```
 
+## ⚙️ Backend
+- Node.js, Express, MySQL (Railway), mysql2 (promise-based), MVC-ish structure
+- Single endpoint `/search/dishes` for list + filtered queries
+- Indexed queries for performance
 
-The repository is organized this way to keep the backend and frontend independent, making it easier to deploy and maintain each part separately.
+### Endpoint
+`GET /search/dishes`
+- `name` (optional; blank returns all dishes)
+- `minPrice` (required)
+- `maxPrice` (required)
 
-Backend Overview
+Example: `/search/dishes?name=biryani&minPrice=0&maxPrice=9999`
 
-The backend is built using:
+### Tables
+- `restaurants`
+- `menu_items`
+- `orders`
 
-Node.js
+Relationships join dishes, restaurants, and historical orders to compute popularity.
 
-Express
+## 🎨 Frontend
+- React (CRA), Axios, simple components, plain CSS
+- Service/config layering (`api.js`, `services/*`)
+- Features: search bar with suggestions, min/max price filters, empty-dish fetch, card list, “Top X” tag, centered empty state
 
-MySQL (Railway-hosted)
+### Component Layout
+```
+src/
+  App.js
+  App.css
+  components/
+    FoodFinder.jsx
+    FoodFinder.css
+  config/
+    api.js
+  services/
+    listService.js
+    searchService.js
+```
+`FoodFinder.jsx` = main UI/logic; `api.js` = Axios instance; services isolate API calls.
 
-mysql2 (promise wrapper)
+## 🚀 How It Works
+- On load: fetch all dishes via `/search/dishes?name=&minPrice=0&maxPrice=9999`
+- User searches (e.g., “Chicken Biryani”, “Masala Dosa”, “Paneer Tikka”)
+- Requires price inputs; results sorted by order count
 
-MVC folder structure
+## 🧪 Local Setup
 
-Raw SQL for performance and transparency
-
-The goal of the backend is to expose an API that returns a list of restaurants serving a specific dish, filtered by price and ranked by order count.
-
-Main API Endpoint
-GET /search/dishes
-
-Query Parameters
-
-Name	Description
-name	Name of the dish (supports partial match)
-minPrice	Minimum dish price
-maxPrice	Maximum dish price
-
-Example Request
-
-/search/dishes?name=biryani&minPrice=100&maxPrice=300
-
-
-The response includes restaurant details, dish info, and the number of times the dish was ordered.
-
-Database Model
-
-The backend uses three tables:
-
-restaurants
-
-id
-
-name
-
-city
-
-menu_items
-
-id
-
-restaurant_id
-
-name
-
-price
-
-orders
-
-id
-
-restaurant_id
-
-menu_item_id
-
-created_at
-
-Indexes are applied on searchable columns to keep the API performant.
-
-Running the Backend Locally
-
-Install dependencies
-
+### Backend
+```bash
 cd backend
 npm install
-
-
-Add environment variables
-Create a .env file inside backend/:
-
+npm run dev
+```
+Create `backend/.env`:
+```
 MYSQLHOST=
 MYSQLUSER=
 MYSQLPASSWORD=
 MYSQLDATABASE=
 MYSQLPORT=
 PORT=5001
+```
 
+### Frontend
+```bash
+cd frontend
+npm install
+npm start
+```
+Create `frontend/.env`:
+```
+REACT_APP_BASE_URL=https://your-backend-url.up.railway.app
+```
 
-Start the server
+## ☁️ Deployment
+- Backend: Railway + MySQL, public networking, env vars in dashboard
+- Frontend: Vercel; connect repo and select `frontend` folder
 
-npm run dev
-
-Deployment
-
-The backend is deployed on Railway using:
-
-A dedicated MySQL instance
-
-Public networking for HTTP access
-
-Environment variables managed in Railway Dashboard
-
-The API runs on the port assigned via process.env.PORT.
-
-Frontend Overview
-
-The frontend/ folder is kept separate for modularity.
-This area is intended for building a small UI (React or plain HTML) that can interact with the backend API.
-It is not part of the core assignment but the structure is prepared for future expansion.
-
-Author
-
-Ranjana
-Software Developer
+## 👩‍💻 Author
+Ranjana — Software Developer
