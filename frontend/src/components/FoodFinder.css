@@ -130,3 +130,10 @@
   color: #0066cc;
   font-weight: bold;
 }
+.ff-suggestion {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+}
+

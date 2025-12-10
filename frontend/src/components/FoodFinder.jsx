@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { searchDishes } from "../services/searchService";
 import "./FoodFinder.css";
 
@@ -8,22 +8,33 @@ function FoodFinder() {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(9999);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSearch = async () => {
+  const runSearch = async (searchName, min, max) => {
     setLoading(true);
-
-    const queryDish = dish.trim(); // if empty → show all
-    const min = minPrice || 0;
-    const max = maxPrice || 9999;
-
     try {
-      const data = await searchDishes(queryDish, min, max);
+      const data = await searchDishes(searchName, min, max);
       setItems(data);
     } catch (err) {
-      console.log("Search failed", err);
+      setError("Something went wrong while fetching results.");
+    }
+    setLoading(false);
+  };
+
+  // 🟢 CALL SEARCH API ON FIRST PAGE LOAD
+  useEffect(() => {
+    runSearch("", 0, 9999); // load all dishes
+  }, []);
+
+  const handleSearch = async () => {
+    setError("");
+
+    if (minPrice === "" || maxPrice === "") {
+      setError("Please enter both minimum and maximum price.");
+      return;
     }
 
-    setLoading(false);
+    runSearch(dish.trim(), minPrice, maxPrice);
   };
 
   return (
@@ -55,9 +66,14 @@ function FoodFinder() {
         <button onClick={handleSearch}>Search</button>
       </div>
 
+      <p className="ff-suggestion">
+         You can try: Chicken Biryani, Masala Dosa, Paneer Tikka
+      </p>
+
+      {error && <p className="ff-error">{error}</p>}
       {loading && <p className="ff-loading">Loading...</p>}
 
-      {/* Empty page on first load */}
+      {/* Empty state */}
       {!loading && items.length === 0 && (
         <div className="ff-empty-wrapper">
           <div className="ff-empty-card">
@@ -70,10 +86,6 @@ function FoodFinder() {
       <ul className="ff-list">
         {items.map((i, idx) => (
           <li key={idx} className="ff-list-item">
-            {i.orderCount !== undefined && (
-              <span className="ff-badge">Top {idx + 1}</span>
-            )}
-
             <h2 className="ff-restaurant-name">{i.restaurantName}</h2>
             <p className="ff-city">{i.city}</p>
 
