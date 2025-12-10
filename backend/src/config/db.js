@@ -14,5 +14,5 @@ export const pool = mysql.createPool({
   queueLimit: 0,          // unlimited queueing
 });
 
-console.log("ranjana");
+
 
