@@ -21,7 +21,7 @@ function FoodFinder() {
     setLoading(false);
   };
 
-  // 🟢 CALL SEARCH API ON FIRST PAGE LOAD
+  //  CALL SEARCH API ON FIRST PAGE LOAD
   useEffect(() => {
     runSearch("", 0, 9999); // load all dishes
   }, []);
