@@ -3,6 +3,10 @@
 FoodFinder is a small full-stack application that lets you search for dishes and see which restaurants serve them, ranked by how many times each dish has been ordered.
 The backend is built with Node.js, Express, and MySQL, and the frontend is a simple React app that consumes the API.
 
+## Live URLs
+
+- **Frontend**: [https://foodfinder-zeta.vercel.app](https://foodfinder-zeta.vercel.app)
+- **Backend API**: [https://foodfinder-production.up.railway.app](https://foodfinder-production.up.railway.app)
 
 ## Project Structure
 ```
@@ -22,7 +26,7 @@ foodfinder/
 - `minPrice` (required)
 - `maxPrice` (required)
 
-Example: `/dishes/search?name=biryani&minPrice=0&maxPrice=9999`
+Example: `https://foodfinder-production.up.railway.app/dishes/search?name=biryani&minPrice=0&maxPrice=9999`
 
 ### Tables
 - `restaurants`
@@ -92,7 +96,7 @@ src/
 `FoodFinder.jsx` = main UI/logic; `api.js` = Axios instance; services isolate API calls.
 
 ## How It Works
-- On load: fetch all dishes via `/dishes/search?name=&minPrice=0&maxPrice=9999`
+- On load: fetch all dishes via `https://foodfinder-production.up.railway.app/dishes/search?name=&minPrice=0&maxPrice=9999`
 - User searches (e.g., “Chicken Biryani”, “Masala Dosa”, “Paneer Tikka”)
 - Requires price inputs; results sorted by order count
 
@@ -156,12 +160,12 @@ npm start
 ```
 Create `frontend/.env`:
 ```
-REACT_APP_BASE_URL=https://your-backend-url.up.railway.app
+REACT_APP_BASE_URL=https://foodfinder-production.up.railway.app
 ```
 
 ## Deployment
-- The backend (Node.js + Express + MySQL) is hosted on Railway.
-- The frontend (React)  is deployed on Vercel, chosen for its simplicity and fast global CDN.
+- **Backend**: Hosted on Railway at [https://foodfinder-production.up.railway.app](https://foodfinder-production.up.railway.app)
+- **Frontend**: Deployed on Vercel at [https://foodfinder-zeta.vercel.app](https://foodfinder-zeta.vercel.app)
 
 ## Author
 Ranjana — Software Developer

@@ -29,10 +29,36 @@ function FoodFinder() {
   const handleSearch = async () => {
     setError("");
 
-    if (minPrice === "" || maxPrice === "") {
-      setError("Please enter both minimum and maximum price.");
-      return;
-    }
+    const min = Number(minPrice);
+  const max = Number(maxPrice);
+
+  // Check if both fields are filled
+  if (minPrice === "" || maxPrice === "") {
+    setError("Please enter both minimum and maximum price.");
+    return;
+  }
+
+  
+  if (isNaN(min) || isNaN(max)) {
+    setError("Please enter valid numeric values for price.");
+    return;
+  }
+
+
+  if (min === 0 && max === 0) {
+    setError("Minimum and maximum price cannot both be 0.");
+    return;
+  }
+
+  if (min > max) {
+    setError("Minimum price cannot be greater than maximum price.");
+    return;
+  }
+
+  if (min > 0 && max === 0) {
+    setError("Maximum price must be greater than 0.");
+    return;
+  }
 
     runSearch(dish.trim(), minPrice, maxPrice);
   };
