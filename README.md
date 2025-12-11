@@ -31,6 +31,45 @@ Example: `/dishes/search?name=biryani&minPrice=0&maxPrice=9999`
 
 Relationships join dishes, restaurants, and historical orders to compute popularity.
 
+### Query & Indexing Overview
+
+The search endpoint uses an optimized SQL query to fetch dishes, filter by price range, support partial name searches, and rank results by total orders:
+
+```sql
+SELECT
+    r.id AS restaurantId,
+    r.name AS restaurantName,
+    r.city,
+    mi.name AS dishName,
+    mi.price AS dishPrice,
+    COALESCE(o.orderCount, 0) AS orderCount
+FROM menu_items mi
+INNER JOIN restaurants r 
+    ON r.id = mi.restaurant_id
+LEFT JOIN (
+    SELECT menu_item_id, COUNT(*) AS orderCount
+    FROM orders
+    GROUP BY menu_item_id
+) o 
+    ON o.menu_item_id = mi.id
+WHERE mi.price BETWEEN ? AND ?
+  AND mi.name LIKE CONCAT('%', ?, '%')
+ORDER BY orderCount DESC
+LIMIT 10;
+```
+
+**Indexes Used**
+
+```sql
+CREATE INDEX idx_menu_price ON menu_items(price);
+CREATE INDEX idx_orders_menu_item ON orders(menu_item_id);
+```
+
+- `idx_menu_price` improves performance for price-range filtering in `WHERE mi.price BETWEEN ? AND ?`.
+- `idx_orders_menu_item` speeds up the subquery that counts total orders per dish, making the `LEFT JOIN` on `orders.menu_item_id` faster.
+
+These indexes keep the search query efficient even as the dataset grows.
+
 ## Frontend
 - React (CRA), Axios, simple components, plain CSS
 - Service/config layering (`api.js`, `services/*`)
