@@ -46,7 +46,7 @@ function FoodFinder() {
 
 
   if (min === 0 && max === 0) {
-    setError("Minimum and maximum price cannot both be 0.");
+   setError("Please enter a valid price range.");
     return;
   }
 
@@ -56,7 +56,7 @@ function FoodFinder() {
   }
 
   if (min > 0 && max === 0) {
-    setError("Maximum price must be greater than 0.");
+     setError("Please enter a valid maximum price.");
     return;
   }
 
