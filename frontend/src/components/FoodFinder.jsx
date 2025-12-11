@@ -60,6 +60,7 @@ function FoodFinder() {
     return;
   }
 
+  
     runSearch(dish.trim(), minPrice, maxPrice);
   };
 
